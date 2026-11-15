@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --primary: 196 92 38;
+  --primary-hover: 168 74 28;
+  --primary-soft: 248 232 218;
+  --secondary: 232 168 124;
+  --accent: 42 157 143;
+  --background: 253 248 243;
+  --surface: 255 255 255;
+  --text-primary: 44 24 16;
+  --text-secondary: 107 78 61;
+  --border: 234 217 200;
+  --success: 42 157 143;
+  --warning: 233 196 106;
+  --error: 231 111 81;
+  --warm-shadow: 91 53 29;
+}
+
+.dark {
+  color-scheme: dark;
+  --primary: 224 122 61;
+  --primary-hover: 241 147 88;
+  --primary-soft: 73 46 31;
+  --secondary: 177 119 83;
+  --accent: 75 187 167;
+  --background: 28 20 16;
+  --surface: 42 33 28;
+  --text-primary: 253 248 243;
+  --text-secondary: 212 184 160;
+  --border: 61 46 36;
+  --success: 75 187 167;
+  --warning: 233 196 106;
+  --error: 231 111 81;
+  --warm-shadow: 0 0 0;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn Variable', Tahoma, sans-serif;
+  background: rgb(var(--background));
+  color: rgb(var(--text-primary));
+  transition: background-color .25s ease, color .25s ease;
+}
+::selection { background: rgb(var(--primary) / .18); color: rgb(var(--text-primary)); }
+input, button, select, textarea { font: inherit; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid rgb(var(--accent) / .48); outline-offset: 3px; }
+
+@layer base {
+  h1, h2, h3, h4 { letter-spacing: -.025em; }
+}
+
+@layer components {
+  .page-shell { @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8; }
+  .warm-card { @apply rounded-3xl border border-line bg-surface shadow-card; }
+  .section-eyebrow { @apply text-sm font-bold text-brand; }
+  .section-title { @apply mt-2 text-2xl font-black tracking-tight text-ink sm:text-3xl; }
+  .button-primary { @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-brand px-5 py-3 font-bold text-white shadow-soft transition hover:-translate-y-0.5 hover:bg-brand-dark hover:shadow-warm disabled:cursor-not-allowed disabled:opacity-60; }
+  .button-outline { @apply inline-flex items-center justify-center gap-2 rounded-2xl border border-line bg-surface px-5 py-3 font-bold text-ink transition hover:border-brand/50 hover:bg-brand-light/50; }
+  .input-warm { @apply w-full rounded-xl border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted/70 outline-none transition focus:border-brand focus:ring-4 focus:ring-brand/10; }
+  .eyebrow-pill { @apply inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-sm font-bold text-white backdrop-blur-md; }
+}
+
+/* Bridge legacy screens to the warm brand system in both color schemes. */
+.bg-gray-50 { background-color: rgb(var(--background)); }
+.bg-gray-100, .bg-gray-200 { background-color: rgb(var(--primary-soft)); }
+.text-gray-900, .text-gray-800, .text-gray-700, .text-black { color: rgb(var(--text-primary)); }
+.text-gray-600, .text-gray-500, .text-gray-400 { color: rgb(var(--text-secondary)); }
+.border, .border-t, .border-b, .border-l, .border-r, .border-gray-100, .border-gray-200, .border-gray-300 { border-color: rgb(var(--border)); }
+.bg-green-50 { background-color: rgb(var(--success) / .10); }
+.bg-yellow-50 { background-color: rgb(var(--warning) / .15); }
+.bg-blue-50 { background-color: rgb(var(--accent) / .10); }
+.bg-red-50 { background-color: rgb(var(--error) / .10); }
+.dark body { background-color: rgb(var(--background)); color: rgb(var(--text-primary)); }
+.dark .bg-white { background-color: rgb(var(--surface)); color: rgb(var(--text-primary)); }
+.dark .bg-gray-50 { background-color: rgb(var(--background)); }
+.dark .bg-gray-100, .dark .bg-gray-200 { background-color: rgb(var(--border)); }
+.dark .text-gray-900, .dark .text-gray-800, .dark .text-gray-700, .dark .text-black { color: rgb(var(--text-primary)); }
+.dark .text-gray-600, .dark .text-gray-500, .dark .text-gray-400 { color: rgb(var(--text-secondary)); }
+.dark .border, .dark .border-t, .dark .border-b, .dark .border-l, .dark .border-r { border-color: rgb(var(--border)); }
+.dark .hover\:bg-gray-50:hover, .dark .hover\:bg-gray-100:hover { background-color: rgb(var(--primary) / .09); }
+.dark .bg-white\/90, .dark .bg-white\/95 { background-color: rgb(var(--surface) / .94) !important; color: rgb(var(--text-primary)); }
+.dark .bg-green-50, .dark .bg-green-100 { background-color: rgb(var(--success) / .12); }
+.dark .bg-yellow-50, .dark .bg-yellow-100 { background-color: rgb(var(--warning) / .12); }
+.dark .bg-red-50, .dark .bg-red-100 { background-color: rgb(var(--error) / .12); }
+.dark .bg-blue-50, .dark .bg-blue-100 { background-color: rgb(var(--accent) / .12); }
+.dark input, .dark select, .dark textarea { color: rgb(var(--text-primary)); }
+.dark option { background: rgb(var(--surface)); color: rgb(var(--text-primary)); }
+
+.hero-image { animation: hero-kenburns 26s ease-in-out infinite alternate; }
+@keyframes hero-kenburns { from { transform: scale(1.015); } to { transform: scale(1.075); } }
+
+.reveal { opacity: 1; transform: translateY(0); }
+.reveal.reveal-ready { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.reveal.reveal-ready.is-visible { opacity: 1; transform: translateY(0); }
+
+.skeleton { position: relative; overflow: hidden; background: rgb(var(--border) / .45); }
+.skeleton::after { content: ''; position: absolute; inset: 0; transform: translateX(-100%); background: linear-gradient(90deg, transparent, rgb(var(--surface) / .8), transparent); animation: shimmer 1.4s infinite; }
+@keyframes shimmer { 100% { transform: translateX(100%); } }
+
+::-webkit-scrollbar { width: 7px; height: 7px; }
+::-webkit-scrollbar-thumb { background: rgb(var(--secondary) / .8); border-radius: 999px; }
+::-webkit-scrollbar-track { background: rgb(var(--background)); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

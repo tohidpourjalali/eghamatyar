@@ -1,0 +1,6 @@
+import type { ReactNode } from 'react';
+import ProtectedRoute from '@/components/ProtectedRoute';
+
+export default function PaymentResultLayout({ children }: { children: ReactNode }) {
+  return <ProtectedRoute access="signed-in">{children}</ProtectedRoute>;
+}
